@@ -58,30 +58,34 @@ export default function Product() {
 	return (
 		<div>
 			<Grid>
-				<div className={styles.filterDesign}>
-					<select
-						name='category'
-						id='category'
-						onChange={(e) => {
-							setCategory(e.target.value);
-						}}
-					>
-						<option value='all'>All</option>
-						<option value='Wine'>Wine</option>
-						<option value='Beer'>Beer</option>
-						<option value='Spirits'>Spirits</option>
-					</select>
-				</div>
-				<div>
-					<input
-						type='search'
-						name='search-form'
-						id='search-form'
-						placeholder='Search for...'
-						value={searchValue}
-						onChange={(e) => setSearchValue(e.target.value)}
-					/>
-				</div>
+				<Grid.Column computer={8} tablet={8} mobile={16}>
+					<div className={styles.searchDesign}>
+						<input
+							type='search'
+							name='search-form'
+							id='search-form'
+							placeholder='Search for...'
+							value={searchValue}
+							onChange={(e) => setSearchValue(e.target.value)}
+						/>
+					</div>
+				</Grid.Column>
+				<Grid.Column computer={8} tablet={8} mobile={16}>
+					<div className={styles.filterDesign}>
+						<select
+							name='category'
+							id='category'
+							onChange={(e) => {
+								setCategory(e.target.value);
+							}}
+						>
+							<option value='all'>All</option>
+							<option value='Wine'>Wine</option>
+							<option value='Beer'>Beer</option>
+							<option value='Spirits'>Spirits</option>
+						</select>
+					</div>
+				</Grid.Column>
 			</Grid>
 			<Grid>
 				{filterProducts(data).map((item, index) => {
@@ -97,11 +101,11 @@ export default function Product() {
 											content: 'Sale',
 											ribbon: true,
 										}}
-										src={CardImage}
+										src={item.productImage}
 										alt={item.productName}
 									/>
 								) : (
-									<Image fluid src={CardImage} alt={item.productName} />
+									<Image fluid src={item.productImage} alt={item.productName} />
 								)}
 
 								<Card.Content

@@ -1,9 +1,16 @@
 .productName {
 	line-height: 1.4em;
-	color: #000;
+	color: rgb(41, 41, 41);
 	font-weight: 700;
+	font-size: 1.2em !important;
 }
 
 .filterDesign {
 	float: right;
+	padding: 1em;
+}
+
+.searchDesign {
+	float: left;
+	padding: 1em;
 }
