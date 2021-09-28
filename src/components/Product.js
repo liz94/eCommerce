@@ -20,21 +20,55 @@ export default function Product() {
 				setData(myJson);
 			});
 	};
+
+	const [data, setData] = useState([]);
+	const [category, setCategory] = useState('all');
+	const [filterParam] = useState(['type']);
+	const [q, setQ] = useState('');
+
 	useEffect(() => {
 		getData();
 	}, []);
 
-	const [data, setData] = useState([]);
-
-	//creating dropwdown filter
+	//filter products based on type
+	function filterProducts(items) {
+		return items.filter((item) => {
+			if (item.type === category) {
+				return filterParam.some((newItem) => {
+					return (
+						item[newItem].toString().toLowerCase().indexOf(q.toLowerCase()) > -1
+					);
+				});
+			} else if (category === 'all') {
+				return filterParam.some((newItem) => {
+					return (
+						item[newItem].toString().toLowerCase().indexOf(q.toLowerCase()) > -1
+					);
+				});
+			}
+		});
+	}
 
 	return (
 		<div>
 			<Grid>
-				<Dropdown options=''></Dropdown>
+				<div className={styles.filterDesign}>
+					<select
+						name='category'
+						id='category'
+						onChange={(e) => {
+							setCategory(e.target.value);
+						}}
+					>
+						<option value='all'>All</option>
+						<option value='Wine'>Wine</option>
+						<option value='Beer'>Beer</option>
+						<option value='Spirits'>Spirits</option>
+					</select>
+				</div>
 			</Grid>
 			<Grid>
-				{data.map((item, index) => {
+				{filterProducts(data).map((item, index) => {
 					return (
 						<Grid.Column computer={4} tablet={8} mobile={16} key={index}>
 							<Card>
