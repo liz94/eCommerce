@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Image, Card, Container, Dropdown } from 'semantic-ui-react';
+import { Grid, Image, Card } from 'semantic-ui-react';
 import CardImage from '../assets/temp.jpg';
 import { useEffect, useState } from 'react';
 import styles from './Product.module.css';
@@ -23,26 +23,32 @@ export default function Product() {
 
 	const [data, setData] = useState([]);
 	const [category, setCategory] = useState('all');
-	const [filterParam] = useState(['type']);
-	const [q, setQ] = useState('');
+	const [searchParam] = useState(['productName']);
+	const [searchValue, setSearchValue] = useState('');
 
 	useEffect(() => {
 		getData();
 	}, []);
 
-	//filter products based on type
+	//search for items using productName and filter products based on type
 	function filterProducts(items) {
 		return items.filter((item) => {
 			if (item.type === category) {
-				return filterParam.some((newItem) => {
+				return searchParam.some((newItem) => {
 					return (
-						item[newItem].toString().toLowerCase().indexOf(q.toLowerCase()) > -1
+						item[newItem]
+							.toString()
+							.toLowerCase()
+							.indexOf(searchValue.toLowerCase()) > -1
 					);
 				});
 			} else if (category === 'all') {
-				return filterParam.some((newItem) => {
+				return searchParam.some((newItem) => {
 					return (
-						item[newItem].toString().toLowerCase().indexOf(q.toLowerCase()) > -1
+						item[newItem]
+							.toString()
+							.toLowerCase()
+							.indexOf(searchValue.toLowerCase()) > -1
 					);
 				});
 			}
@@ -65,6 +71,16 @@ export default function Product() {
 						<option value='Beer'>Beer</option>
 						<option value='Spirits'>Spirits</option>
 					</select>
+				</div>
+				<div>
+					<input
+						type='search'
+						name='search-form'
+						id='search-form'
+						placeholder='Search for...'
+						value={searchValue}
+						onChange={(e) => setSearchValue(e.target.value)}
+					/>
 				</div>
 			</Grid>
 			<Grid>
