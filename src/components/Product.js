@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid, Image, Card } from 'semantic-ui-react';
 import CardImage from '../assets/temp.jpg';
 import { useEffect, useState } from 'react';
+import styles from './Product.module.css';
 
 export default function Product() {
 	const getData = () => {
@@ -32,8 +33,26 @@ export default function Product() {
 					return (
 						<Grid.Column computer={4} tablet={8} mobile={16} key={index}>
 							<Card>
-								<Image src={CardImage} alt={item.productName} />
-								<Card.Content description={item.productName} />
+								{item.isSale ? (
+									<Image
+										fluid
+										label={{
+											as: 'a',
+											color: 'red',
+											content: 'Sale',
+											ribbon: true,
+										}}
+										src={CardImage}
+										alt={item.productName}
+									/>
+								) : (
+									<Image fluid src={CardImage} alt={item.productName} />
+								)}
+
+								<Card.Content
+									description={item.productName}
+									className={styles.productName}
+								/>
 								<Card.Content extra>{item.price}</Card.Content>
 							</Card>
 						</Grid.Column>
