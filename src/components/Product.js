@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Image, Card } from 'semantic-ui-react';
+import { Grid, Image, Card, Container, Dropdown } from 'semantic-ui-react';
 import CardImage from '../assets/temp.jpg';
 import { useEffect, useState } from 'react';
 import styles from './Product.module.css';
@@ -26,8 +26,13 @@ export default function Product() {
 
 	const [data, setData] = useState([]);
 
+	//creating dropwdown filter
+
 	return (
 		<div>
+			<Grid>
+				<Dropdown options=''></Dropdown>
+			</Grid>
 			<Grid>
 				{data.map((item, index) => {
 					return (
