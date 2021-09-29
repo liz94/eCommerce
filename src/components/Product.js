@@ -58,19 +58,19 @@ export default function Product() {
 	return (
 		<div>
 			<Grid>
-				<Grid.Column computer={8} tablet={8} mobile={16}>
+				<Grid.Column computer={8} tablet={8} mobile={8}>
 					<div className={styles.searchDesign}>
 						<input
 							type='search'
 							name='search-form'
 							id='search-form'
-							placeholder='Search for...'
+							placeholder='Search by product name...'
 							value={searchValue}
 							onChange={(e) => setSearchValue(e.target.value)}
 						/>
 					</div>
 				</Grid.Column>
-				<Grid.Column computer={8} tablet={8} mobile={16}>
+				<Grid.Column computer={8} tablet={8} mobile={8}>
 					<div className={styles.filterDesign}>
 						<select
 							name='category'
@@ -91,7 +91,7 @@ export default function Product() {
 				{filterProducts(data).map((item, index) => {
 					return (
 						<Grid.Column computer={4} tablet={8} mobile={16} key={index}>
-							<Card>
+							<Card fluid className={styles.cardDesign}>
 								{item.isSale ? (
 									<Image
 										fluid
@@ -103,16 +103,19 @@ export default function Product() {
 										}}
 										src={item.productImage}
 										alt={item.productName}
+										className={styles.productImage}
 									/>
 								) : (
-									<Image fluid src={item.productImage} alt={item.productName} />
+									<Image
+										fluid
+										src={item.productImage}
+										alt={item.productName}
+										className={styles.productImage}
+									/>
 								)}
 
-								<Card.Content
-									description={item.productName}
-									className={styles.productName}
-								/>
-								<Card.Content extra>{item.price}</Card.Content>
+								<div className={styles.productName}>{item.productName}</div>
+								<div className={styles.price}>{item.price}</div>
 							</Card>
 						</Grid.Column>
 					);

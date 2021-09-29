@@ -2,7 +2,15 @@
 	line-height: 1.4em;
 	color: rgb(41, 41, 41);
 	font-weight: 700;
+	font-size: 1.8rem !important;
+	padding: 0.6rem 1rem;
+}
+
+.price {
+	line-height: 1.4em;
+	color: rgb(41, 41, 41);
 	font-size: 1.2em !important;
+	padding: 1rem;
 }
 
 .filterDesign {
@@ -13,4 +21,21 @@
 .searchDesign {
 	float: left;
 	padding: 1em;
+}
+
+.cardDesign {
+	height: clamp(18em, 100%, 30em);
+}
+
+input {
+	padding: 1em;
+	border: 1px solid rgb(46, 46, 49);
+	border-radius: 30px;
+}
+
+select {
+	padding: 1em;
+	border: 1px solid rgb(46, 46, 49);
+	border-radius: 5px;
+	cursor: pointer;
 }
